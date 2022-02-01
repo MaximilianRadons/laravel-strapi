@@ -28,7 +28,7 @@ class LaravelStrapi
 
         // Fetch and cache the collection type
         $collection = Cache::remember($cacheKey, $this->cacheTime, function () use ($url, $type, $sortKey, $sortOrder, $limit, $start) {
-            $response = Http::get($url . '/' . $type . '?_sort=' . $sortKey . ':' . $sortOrder . '&_limit=' . $limit . '&_start=' . $start);
+            $response = Http::get($url . '/api/' . $type . '?_sort=' . $sortKey . ':' . $sortOrder . '&_limit=' . $limit . '&_start=' . $start);
 
             return $response->json();
         });
@@ -62,7 +62,7 @@ class LaravelStrapi
         $url = $this->strapiUrl;
 
         return Cache::remember(self::CACHE_KEY . '.collectionCount.' . $type, $this->cacheTime, function () use ($url, $type) {
-            $response = Http::get($url . '/' . $type . '/count');
+            $response = Http::get($url . '/api/' . $type . '/count');
 
             return $response->json();
         });
@@ -74,7 +74,7 @@ class LaravelStrapi
         $cacheKey = self::CACHE_KEY . '.entry.' . $type . '.' . $id;
 
         $entry = Cache::remember($cacheKey, $this->cacheTime, function () use ($url, $type, $id) {
-            $response = Http::get($url . '/' . $type . '/' . $id);
+            $response = Http::get($url . '/api/' . $type . '/' . $id);
 
             return $response->json();
         });
@@ -85,7 +85,7 @@ class LaravelStrapi
             throw new PermissionDenied('Strapi returned a 403 Forbidden');
         }
 
-        if (!isset($entry['id'])) {
+        if (!isset($entry['data'])) {
             Cache::forget($cacheKey);
 
             if ($entry === null) {
@@ -108,7 +108,7 @@ class LaravelStrapi
         $cacheKey = self::CACHE_KEY . '.entryByField.' . $type . '.' . $fieldName . '.' . $fieldValue;
 
         $entries = Cache::remember($cacheKey, $this->cacheTime, function () use ($url, $type, $fieldName, $fieldValue) {
-            $response = Http::get($url . '/' . $type . '?' . $fieldName . '=' . $fieldValue);
+            $response = Http::get($url . '/api/' . $type . '?' . $fieldName . '=' . $fieldValue);
 
             return $response->json();
         });
@@ -143,7 +143,7 @@ class LaravelStrapi
 
         // Fetch and cache the collection type
         $single = Cache::remember($cacheKey, $this->cacheTime, function () use ($url, $type) {
-            $response = Http::get($url . '/' . $type);
+            $response = Http::get($url . '/api/' . $type);
 
             return $response->json();
         });
