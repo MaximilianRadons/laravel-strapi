@@ -1,4 +1,4 @@
-# Laravel wrapper for using the Strapi headless CMS
+# Laravel wrapper for using the Strapi V4 headless CMS
 
 This repository is fork of [dbfx/laravel-strapi](https://github.com/dbfx/laravel-strapi), all credits goes to [Dave Blakey](https://github.com/dbfx). 
 
@@ -9,7 +9,7 @@ This repository is fork of [dbfx/laravel-strapi](https://github.com/dbfx/laravel
 
 ---
 
-Laravel-Strapi is a Laravel helper for using the Strapi headless CMS. 
+Laravel-Strapi is a Laravel helper for using the Strapi V4 headless CMS. 
 
 ## Installation
 
