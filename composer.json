@@ -1,5 +1,5 @@
 {
-    "name": "dbfx/laravel-strapi",
+    "name": "bbwmc/laravel-strapi",
     "description": "Laravel wrapper for using the Strapi headless CMS",
     "keywords": [
         "laravel",
@@ -8,12 +8,17 @@
         "strapi-cms",
         "laravel-package"
     ],
-    "homepage": "https://github.com/dbfx/laravel-strapi",
+    "homepage": "https://github.com/bbwmc/laravel-strapi",
     "license": "MIT",
     "authors": [
         {
             "name": "Dave Blakey",
             "email": "dave@blakey.co",
+            "role": "Developer"
+        },
+        {
+            "name": "Ersin Demirtas",
+            "email": "ersin.demirtas@bedsandbars.com",
             "role": "Developer"
         }
     ],
@@ -33,13 +38,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Dbfx\\LaravelStrapi\\": "src",
-            "Dbfx\\LaravelStrapi\\Database\\Factories\\": "database/factories"
+            "Bbwmc\\LaravelStrapi\\": "src",
+            "Bbwmc\\LaravelStrapi\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Dbfx\\LaravelStrapi\\Tests\\": "tests"
+            "Bbwmc\\LaravelStrapi\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -53,10 +58,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Dbfx\\LaravelStrapi\\LaravelStrapiServiceProvider"
+                "Bbwmc\\LaravelStrapi\\LaravelStrapiServiceProvider"
             ],
             "aliases": {
-                "LaravelStrapi": "Dbfx\\LaravelStrapi\\LaravelStrapiFacade"
+                "LaravelStrapi": "Bbwmc\\LaravelStrapi\\LaravelStrapiFacade"
             }
         }
     },
