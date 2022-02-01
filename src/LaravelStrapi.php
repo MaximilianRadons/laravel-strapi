@@ -14,11 +14,26 @@ class LaravelStrapi
 
     private string $strapiUrl;
     private int $cacheTime;
+    private array $populate;
 
     public function __construct()
     {
         $this->strapiUrl = config('strapi.url');
         $this->cacheTime = config('strapi.cacheTime');
+        $this->populate = [];
+    }
+
+    /**
+     * Adds populate relations.
+     *
+     * @param array $relations
+     * @return $this
+     */
+    public function populate(array $relations): LaravelStrapi
+    {
+        $this->populate = $relations;
+
+        return $this;
     }
 
     public function collection(string $type, $sortKey = 'id', $sortOrder = 'DESC', $limit = 20, $start = 0, $fullUrls = true): array
@@ -102,13 +117,57 @@ class LaravelStrapi
         return $entry;
     }
 
-    public function entriesByField(string $type, string $fieldName, $fieldValue, $fullUrls = true): array
+    /**
+     * Filtering
+     * Queries can accept a filters parameter with the following syntax:
+     *
+     * GET /api/:pluralApiId?filters[field][operator]=value
+     *
+     * The following operators are available:
+     *
+     * Operator	Description
+     * $eq	Equal
+     * $ne	Not equal
+     * $lt	Less than
+     * $lte	Less than or equal to
+     * $gt	Greater than
+     * $gte	Greater than or equal to
+     * $in	Included in an array
+     * $notIn	Not included in an array
+     * $contains	Contains (case-sensitive)
+     * $notContains	Does not contain (case-sensitive)
+     * $containsi	Contains
+     * $notContainsi	Does not contain
+     * $null	Is null
+     * $notNull	Is not null
+     * $between	Is between
+     * $startsWith	Starts with
+     * $endsWith	Ends with
+     * $or	Joins the filters in an "or" expression
+     * $and	Joins the filters in an "and" expression
+     *
+     * @param string $type
+     * @param string $fieldName
+     * @param $fieldValue
+     * @param string $filterOperator
+     * @param bool $fullUrls
+     * @return array
+     */
+    public function entriesByField(string $type, string $fieldName, $fieldValue, string $filterOperator = '$eq', bool $fullUrls = true): array
     {
         $url = $this->strapiUrl;
         $cacheKey = self::CACHE_KEY . '.entryByField.' . $type . '.' . $fieldName . '.' . $fieldValue;
 
-        $entries = Cache::remember($cacheKey, $this->cacheTime, function () use ($url, $type, $fieldName, $fieldValue) {
-            $response = Http::get($url . '/api/' . $type . '?' . $fieldName . '=' . $fieldValue);
+        $entries = Cache::remember($cacheKey, $this->cacheTime, function () use ($url, $type, $fieldName, $fieldValue, $filterOperator) {
+            $requestUrl = $url . '/api/' . $type . '?filters[' . $fieldName . ']['.$filterOperator.']=' . $fieldValue;
+
+            if($this->hasPopulates()) {
+                $requestUrl .= '&populate=' . $this->preparePopulates();
+            }
+
+            $response = Http::get($requestUrl);
+
+            $this->clearPopulates();
 
             return $response->json();
         });
@@ -195,5 +254,33 @@ class LaravelStrapi
         }
 
         return $array;
+    }
+
+    /**
+     * Prepares the populates.
+     *
+     * @return string
+     */
+    private function preparePopulates(): string
+    {
+        return implode(',', $this->populate);
+    }
+
+    /**
+     * Check if there populates present.
+     *
+     * @return bool
+     */
+    private function hasPopulates(): bool
+    {
+        return !empty($this->populate);
+    }
+
+    /*
+     * Clears the populates.
+     */
+    private function clearPopulates(): void
+    {
+        $this->populate = [];
     }
 }
