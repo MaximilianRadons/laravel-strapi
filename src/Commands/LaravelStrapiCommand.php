@@ -1,6 +1,6 @@
 <?php
 
-namespace Dbfx\LaravelStrapi\Commands;
+namespace Bbwmc\LaravelStrapi\Commands;
 
 use Illuminate\Console\Command;
 

@@ -1,2 +1,2 @@
 providers:
-  - Dbfx\LaravelStrapi\LaravelStrapiServiceProvider
+  - Bbwmc\LaravelStrapi\LaravelStrapiServiceProvider

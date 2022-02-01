@@ -1,6 +1,6 @@
 <?php
 
-namespace Dbfx\LaravelStrapi\Exceptions;
+namespace Bbwmc\LaravelStrapi\Exceptions;
 
 use RuntimeException;
 

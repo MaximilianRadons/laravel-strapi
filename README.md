@@ -1,9 +1,9 @@
 # Laravel wrapper for using the Strapi headless CMS
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/dbfx/laravel-strapi.svg?style=flat-square)](https://packagist.org/packages/dbfx/laravel-strapi)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/dbfx/laravel-strapi/run-tests?label=tests)](https://github.com/dbfx/laravel-strapi/actions?query=workflow%3Arun-tests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/dbfx/laravel-strapi/Check%20&%20fix%20styling?label=code%20style)](https://github.com/dbfx/laravel-strapi/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/dbfx/laravel-strapi.svg?style=flat-square)](https://packagist.org/packages/dbfx/laravel-strapi)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/bbwmc/laravel-strapi.svg?style=flat-square)](https://packagist.org/packages/bbwmc/laravel-strapi)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/bbwmc/laravel-strapi/run-tests?label=tests)](https://github.com/bbwmc/laravel-strapi/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/bbwmc/laravel-strapi/Check%20&%20fix%20styling?label=code%20style)](https://github.com/bbwmc/laravel-strapi/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/bbwmc/laravel-strapi.svg?style=flat-square)](https://packagist.org/packages/bbwmc/laravel-strapi)
 
 ---
 
@@ -14,14 +14,14 @@ Laravel-Strapi is a Laravel helper for using the Strapi headless CMS.
 You can install the package via composer:
 
 ```bash
-composer require dbfx/laravel-strapi
+composer require bbwmc/laravel-strapi
 ```
 
 You can publish and run the migrations with:
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Dbfx\LaravelStrapi\LaravelStrapiServiceProvider" --tag="strapi-config"
+php artisan vendor:publish --provider="Bbwmc\LaravelStrapi\LaravelStrapiServiceProvider" --tag="strapi-config"
 ```
 
 You need to define your STRAPI_URL and STRAPI_CACHE_TIME in .env: 
@@ -36,7 +36,7 @@ STRAPI_CACHE_TIME=3600
 laravel-strapi provides the collection() and entry() calls to return a full collection, or a specific entry from a collection. In the 
 example below we are querying the strapi collection 'blogs' and then getting the entry with id 1 from that collection.
 ```php
-use Dbfx\LaravelStrapi\LaravelStrapi;
+use Bbwmc\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 $blogs = $strapi->collection('blogs');
@@ -51,7 +51,7 @@ There are several useful options available as well.
 - ```$start``` is the offset to be used with limit, useful for pagination
 
 ```php
-use Dbfx\LaravelStrapi\LaravelStrapi;
+use Bbwmc\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 $blogs = $strapi->collection('blogs', $sortKey = 'id', $sortOrder = 'DESC', $limit = 20, $start = 0, $fullUrls = true);
@@ -62,7 +62,7 @@ $entry = $strapi->entry('blogs', 1, $fullUrls = true);
 You may also access Single Type items as follows: 
 
 ```php
-use Dbfx\LaravelStrapi\LaravelStrapi;
+use Bbwmc\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 
@@ -76,7 +76,7 @@ $homepageItem = $strapi->single('homepage', 'content');
 And you may select entries by searching for a custom field (e.g. slug): 
 
 ```php
-use Dbfx\LaravelStrapi\LaravelStrapi;
+use Bbwmc\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 
@@ -97,7 +97,7 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [Dave Blakey](https://github.com/dbfx)
+- [Dave Blakey](https://github.com/bbwmc)
 - [All Contributors](../../contributors)
 
 ## License

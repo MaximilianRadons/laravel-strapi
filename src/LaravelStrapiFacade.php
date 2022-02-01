@@ -1,11 +1,11 @@
 <?php
 
-namespace Dbfx\LaravelStrapi;
+namespace Bbwmc\LaravelStrapi;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Dbfx\LaravelStrapi\LaravelStrapi
+ * @see \Bbwmc\LaravelStrapi\LaravelStrapi
  */
 class LaravelStrapiFacade extends Facade
 {

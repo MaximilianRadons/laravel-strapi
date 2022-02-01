@@ -1,10 +1,10 @@
 <?php
 
-namespace Dbfx\LaravelStrapi;
+namespace Bbwmc\LaravelStrapi;
 
-use Dbfx\LaravelStrapi\Exceptions\NotFound;
-use Dbfx\LaravelStrapi\Exceptions\PermissionDenied;
-use Dbfx\LaravelStrapi\Exceptions\UnknownError;
+use Bbwmc\LaravelStrapi\Exceptions\NotFound;
+use Bbwmc\LaravelStrapi\Exceptions\PermissionDenied;
+use Bbwmc\LaravelStrapi\Exceptions\UnknownError;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Dbfx\LaravelStrapi\Tests;
+namespace Bbwmc\LaravelStrapi\Tests;
 
-use Dbfx\LaravelStrapi\LaravelStrapiServiceProvider;
+use Bbwmc\LaravelStrapi\LaravelStrapiServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 

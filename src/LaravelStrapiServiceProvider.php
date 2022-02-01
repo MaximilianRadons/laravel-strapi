@@ -1,8 +1,8 @@
 <?php
 
-namespace Dbfx\LaravelStrapi;
+namespace Bbwmc\LaravelStrapi;
 
-use Dbfx\LaravelStrapi\Commands\LaravelStrapiCommand;
+use Bbwmc\LaravelStrapi\Commands\LaravelStrapiCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
