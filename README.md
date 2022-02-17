@@ -33,7 +33,7 @@ STRAPI_CACHE_TIME=3600
 laravel-strapi provides the collection() and entry() calls to return a full collection, or a specific entry from a collection. In the 
 example below we are querying the strapi collection 'blogs' and then getting the entry with id 1 from that collection.
 ```php
-use maximilianradons\LaravelStrapi\LaravelStrapi;
+use MaximilianRadons\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 $blogs = $strapi->collection('blogs');
@@ -48,7 +48,7 @@ There are several useful options available as well.
 - ```$start``` is the offset to be used with limit, useful for pagination
 
 ```php
-use maximilianradons\LaravelStrapi\LaravelStrapi;
+use MaximilianRadons\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 $blogs = $strapi->collection('blogs', $sortKey = 'id', $sortOrder = 'DESC', $limit = 20, $start = 0, $fullUrls = true);
