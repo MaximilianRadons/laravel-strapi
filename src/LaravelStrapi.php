@@ -203,7 +203,16 @@ class LaravelStrapi
 
         // Fetch and cache the collection type
         $single = Cache::remember($cacheKey, $this->cacheTime, function () use ($url, $type) {
-            $response = Http::get($url . '/api/' . $type);
+
+            $requestUrl = $url . '/api/' . $type;
+
+            if($this->hasPopulates()) {
+                $requestUrl .= '?populate=' . $this->preparePopulates();
+            }
+
+            $response = Http::get($requestUrl);
+
+            $this->clearPopulates();
 
             return $response->json();
         });
@@ -214,7 +223,7 @@ class LaravelStrapi
             throw new PermissionDenied('Strapi returned a 403 Forbidden');
         }
 
-        if (! isset($single['id'])) {
+        if (! isset($single['data'])) {
             Cache::forget($cacheKey);
 
             if ($single === null) {
