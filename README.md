@@ -1,6 +1,8 @@
 # Laravel wrapper for using the Strapi V4 headless CMS
 
-This repository is fork of [dbfx/laravel-strapi](https://github.com/dbfx/laravel-strapi), all credits goes to [Dave Blakey](https://github.com/dbfx). 
+This repository is fork of [dbfx/laravel-strapi](https://github.com/dbfx/laravel-strapi), all credits goes to [Dave Blakey](https://github.com/dbfx) and [BBWMC](https://github.com/bbwmc). 
+
+Will add Webhook Support for Cache Busting in later version.
 
 ---
 
