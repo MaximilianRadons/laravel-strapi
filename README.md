@@ -82,6 +82,18 @@ $strapi = new LaravelStrapi();
 $entries = $strapi->entriesByField('blogs', 'slug', 'test-blog-post');
 ```
 
+Populate with deep relations:
+
+```php
+use MaximilianRadons\LaravelStrapi\LaravelStrapi;
+
+$strapi = new LaravelStrapi();
+
+$homepageArray = $strapi->populate(['*'])->single('homepage');
+```
+
+
+
 ## Limitations
 
 This is primarily built around public content (so far). It doesn't yet support authentication, etc. Please consider contributing!
