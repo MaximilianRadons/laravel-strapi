@@ -4,6 +4,7 @@ namespace MaximilianRadons\LaravelStrapi;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use MaximilianRadons\LaravelStrapi\Commands\LaravelStrapiCommand;
 
 
 
