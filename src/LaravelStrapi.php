@@ -3,12 +3,6 @@
 namespace MaximilianRadons\LaravelStrapi;
 
 
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Cache;
-use MaximilianRadons\LaravelStrapi\Exceptions\NotFound;
-use MaximilianRadons\LaravelStrapi\Exceptions\UnknownError;
-use MaximilianRadons\LaravelStrapi\Exceptions\PermissionDenied;
-
 class LaravelStrapi extends LaravelStrapiRequest
 {
     public function __construct()
