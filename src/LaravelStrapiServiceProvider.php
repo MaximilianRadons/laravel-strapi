@@ -2,6 +2,9 @@
 
 namespace MaximilianRadons\LaravelStrapi;
 
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
+
 
 
 class LaravelStrapiServiceProvider extends PackageServiceProvider
