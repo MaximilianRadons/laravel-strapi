@@ -1,12 +1,13 @@
 <?php
 
-namespace Bbwmc\LaravelStrapi;
+namespace MaximilianRadons\LaravelStrapi;
 
-use Bbwmc\LaravelStrapi\Exceptions\NotFound;
-use Bbwmc\LaravelStrapi\Exceptions\PermissionDenied;
-use Bbwmc\LaravelStrapi\Exceptions\UnknownError;
-use Illuminate\Support\Facades\Cache;
+
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
+use MaximilianRadons\LaravelStrapi\Exceptions\NotFound;
+use MaximilianRadons\LaravelStrapi\Exceptions\UnknownError;
+use MaximilianRadons\LaravelStrapi\Exceptions\PermissionDenied;
 
 class LaravelStrapi
 {

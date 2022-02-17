@@ -1,6 +1,6 @@
 <?php
 
-namespace Bbwmc\LaravelStrapi\Tests;
+namespace MaximilianRadons\LaravelStrapi;
 
 class ExampleTest extends TestCase
 {

@@ -1,10 +1,8 @@
 <?php
 
-namespace Bbwmc\LaravelStrapi;
+namespace MaximilianRadons\LaravelStrapi;
 
-use Bbwmc\LaravelStrapi\Commands\LaravelStrapiCommand;
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
+
 
 class LaravelStrapiServiceProvider extends PackageServiceProvider
 {

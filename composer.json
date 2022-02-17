@@ -1,5 +1,5 @@
 {
-    "name": "bbwmc/laravel-strapi",
+    "name": "maximilianradons/laravel-strapi",
     "description": "Laravel wrapper for using the Strapi headless CMS",
     "keywords": [
         "laravel",
@@ -8,7 +8,7 @@
         "strapi-cms",
         "laravel-package"
     ],
-    "homepage": "https://github.com/bbwmc/laravel-strapi",
+    "homepage": "https://github.com/MaximilianRadons/laravel-strapi",
     "license": "MIT",
     "authors": [
         {
@@ -19,6 +19,11 @@
         {
             "name": "Ersin Demirtas",
             "email": "ersin.demirtas@bedsandbars.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Maximilian Radons",
+            "email": "radons@rad-germany.de",
             "role": "Developer"
         }
     ],
@@ -38,13 +43,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Bbwmc\\LaravelStrapi\\": "src",
-            "Bbwmc\\LaravelStrapi\\Database\\Factories\\": "database/factories"
+            "MaximilianRadons\\LaravelStrapi\\": "src",
+            "MaximilianRadons\\LaravelStrapi\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bbwmc\\LaravelStrapi\\Tests\\": "tests"
+            "MaximilianRadons\\LaravelStrapi\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -58,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Bbwmc\\LaravelStrapi\\LaravelStrapiServiceProvider"
+                "MaximilianRadons\\LaravelStrapi\\LaravelStrapiServiceProvider"
             ],
             "aliases": {
-                "LaravelStrapi": "Bbwmc\\LaravelStrapi\\LaravelStrapiFacade"
+                "LaravelStrapi": "MaximilianRadons\\LaravelStrapi\\LaravelStrapiFacade"
             }
         }
     },
