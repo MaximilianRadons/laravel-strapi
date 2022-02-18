@@ -89,7 +89,11 @@ use MaximilianRadons\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 
+// load all relations one Level deep 
 $homepageArray = $strapi->populate(['*'])->single('homepage');
+
+// 2 Level or deeper example
+$homepageArray = $strapi->populate(['homepage.navbar.links', 'homepage.metadata'])->single('homepage');
 ```
 
 
