@@ -1,8 +1,6 @@
 # Laravel wrapper for using the Strapi V4 headless CMS
 
-This repository is fork of [dbfx/laravel-strapi](https://github.com/dbfx/laravel-strapi), all credits goes to [Dave Blakey](https://github.com/dbfx) and [BBWMC](https://github.com/bbwmc). 
-
-Will add Webhook Support for Cache Busting in later version.
+This repository is fork of [dbfx/laravel-strapi](https://github.com/dbfx/laravel-strapi), credits goes to [Dave Blakey](https://github.com/dbfx) and [BBWMC](https://github.com/bbwmc). 
 
 ---
 
@@ -23,11 +21,25 @@ You can publish the config file with:
 php artisan vendor:publish --provider="MaximilianRadons\LaravelStrapi\LaravelStrapiServiceProvider" --tag="strapi-config"
 ```
 
-You need to define your STRAPI_URL and STRAPI_CACHE_TIME in .env: 
+You need to define your STRAPI_URL (without /api path) and STRAPI_CACHE_TIME in .env: 
 
 ```
 STRAPI_URL=https://strapi.test.com
 STRAPI_CACHE_TIME=3600
+```
+
+### Athorization (optional)
+Create a bearer token in your admin panel and add it to your .env:
+```
+STRAPI_API_TOKEN=your_api_token
+```
+
+### Cache Flushing (optional)
+To flush the strapi cache on content update, you need to create a Webhook in the Strapi admin panel.
+Setup a url and a header with Key "Athorization" and a random string as Value and add them to your .env:
+```
+STRAPI_WEBHOOK_URL=http://localhost:8000/strapi-cache-webhook
+STRAPI_WEBHOOK_SIGNATURE=your_random_string
 ```
 
 ## Usage
@@ -95,12 +107,6 @@ $homepageArray = $strapi->populate(['*'])->single('homepage');
 // 2 Level or deeper example
 $homepageArray = $strapi->populate(['homepage.navbar.links', 'homepage.metadata'])->single('homepage');
 ```
-
-
-
-## Limitations
-
-This is primarily built around public content (so far). It doesn't yet support authentication, etc. Please consider contributing!
 
 ## Changelog
 

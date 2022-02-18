@@ -13,7 +13,7 @@ class LaravelStrapi extends LaravelStrapiRequest
     public function collection(string $type, $sortKey = 'id', $sortOrder = 'DESC', $limit = 20, $start = 0, $fullUrls = true): array
     {
         $url = $type . '?_sort=' . $sortKey . ':' . $sortOrder . '&_limit=' . $limit . '&_start=' . $start;
-        $cacheKey = self::CACHE_KEY . '.collection.' . $type . '.' . $sortKey . '.' . $sortOrder . '.' . $limit . '.' . $start;
+        $cacheKey = 'collection.' . $type . '.' . $sortKey . '.' . $sortOrder . '.' . $limit . '.' . $start;
 
         $collection = $this->request('get', $url, $cacheKey, $fullUrls);
 
@@ -23,7 +23,7 @@ class LaravelStrapi extends LaravelStrapiRequest
     public function collectionCount(string $type): int
     {
         $url = $type . '/count';
-        $cacheKey = self::CACHE_KEY . '.collectionCount.' . $type;
+        $cacheKey = 'collectionCount.' . $type;
 
         $collectionCount = (int) $this->request('get', $url, $cacheKey, false);
 
@@ -33,7 +33,7 @@ class LaravelStrapi extends LaravelStrapiRequest
     public function entry(string $type, int $id, $fullUrls = true): array
     {
         $url = $type . '/' . $id;
-        $cacheKey = self::CACHE_KEY . '.entry.' . $type . '.' . $id;
+        $cacheKey = 'entry.' . $type . '.' . $id;
 
         $entry = $this->request('get', $url, $cacheKey, $fullUrls);
 
@@ -79,7 +79,7 @@ class LaravelStrapi extends LaravelStrapiRequest
     public function entriesByField(string $type, string $fieldName, $fieldValue, string $filterOperator = '$eq', bool $fullUrls = true): array
     {
         $url = $type . '?filters[' . $fieldName . ']['.$filterOperator.']=' . $fieldValue;
-        $cacheKey = self::CACHE_KEY . '.entryByField.' . $type . '.' . $fieldName . '.' . $fieldValue;
+        $cacheKey = 'entryByField.' . $type . '.' . $fieldName . '.' . $fieldValue;
 
         $entries = $this->request('get', $url, $cacheKey, $fullUrls);
 
@@ -89,7 +89,7 @@ class LaravelStrapi extends LaravelStrapiRequest
     public function single(string $type, string $pluck = null, $fullUrls = true)
     {
         $url = $type;
-        $cacheKey = self::CACHE_KEY . '.single.' . $type;
+        $cacheKey = 'single.' . $type;
 
         $single = $this->request('get', $url, $cacheKey, $fullUrls);
 

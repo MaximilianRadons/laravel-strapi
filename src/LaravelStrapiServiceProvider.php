@@ -15,6 +15,7 @@ class LaravelStrapiServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-strapi')
             ->hasConfigFile()
+            ->hasRoute('web')
             ->hasCommand(LaravelStrapiCommand::class);
     }
 }

@@ -4,7 +4,6 @@ namespace MaximilianRadons\LaravelStrapi;
 use stdClass;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
-use MaximilianRadons\LaravelStrapi\LaravelStrapi;
 use MaximilianRadons\LaravelStrapi\Exceptions\NotFound;
 use MaximilianRadons\LaravelStrapi\Exceptions\UnknownError;
 use MaximilianRadons\LaravelStrapi\Exceptions\PermissionDenied;
@@ -12,8 +11,6 @@ use MaximilianRadons\LaravelStrapi\Exceptions\PermissionDenied;
 
 class LaravelStrapiRequest
 {
-    public const CACHE_KEY = 'laravel-strapi-cache';
-
     private string $strapiUrl;
     private int $cacheTime;
     private array $populate;
@@ -21,27 +18,28 @@ class LaravelStrapiRequest
     public function __construct()
     {
         $this->strapiUrl = config('strapi.url');
-        $this->cacheTime = config('strapi.cacheTime');
+        $this->cacheTime = config('strapi.cache_time');
         $this->populate = [];
     }  
 
     protected function request(string $verb, string $url, string $cacheKey, bool $fullUrls)
     {
         $url = $this->strapiUrl . '/api/'. $url;
+        $cacheKey = config('strapi.cache_prefix') . '.' . $cacheKey;
+
+        $this->rememberCacheKeys($cacheKey);
         
         $data = Cache::remember($cacheKey, $this->cacheTime, function () use ($verb, $url) {
            
-            if($this->hasPopulates()) {
-                
+            if($this->hasPopulates()) {           
                 if(str_contains($url,'?')){
                     $url .= '&' . $this->preparePopulates();
                 }else{
                     $url .= '?' . $this->preparePopulates();
-                }
-                
+                }            
             }
           
-            $response = Http::$verb($url);
+            $response = Http::withToken(config('strapi.token'))->$verb($url);
 
             $this->clearPopulates();
 
@@ -138,6 +136,23 @@ class LaravelStrapiRequest
     private function clearPopulates(): void
     {
         $this->populate = [];
+    }
+
+    /*
+     * Remember all cache keys to flush strapi cache only
+     * 
+     */
+    public function rememberCacheKeys(string $cacheKey)
+    {
+        if(Cache::has(config('strapi.cache_prefix').'.keys')){
+            $cached_keys = Cache::get(config('strapi.cache_prefix').'.keys');
+            if(!in_array($cacheKey, $cached_keys)){
+                $cached_keys[] = $cacheKey;
+            }
+            Cache::put(config('strapi.cache_prefix').'.keys', $cached_keys);
+        }else{
+            Cache::put(config('strapi.cache_prefix').'.keys', [$cacheKey]);
+        }
     }
 
 }
