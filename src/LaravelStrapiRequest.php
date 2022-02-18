@@ -1,6 +1,7 @@
 <?php
 namespace MaximilianRadons\LaravelStrapi;
 
+use stdClass;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use MaximilianRadons\LaravelStrapi\LaravelStrapi;
@@ -33,13 +34,13 @@ class LaravelStrapiRequest
             if($this->hasPopulates()) {
                 
                 if(str_contains($url,'?')){
-                    $url .= '&populate=' . $this->preparePopulates();
+                    $url .= '&' . $this->preparePopulates();
                 }else{
-                    $url .= '?populate=' . $this->preparePopulates();
+                    $url .= '?' . $this->preparePopulates();
                 }
                 
             }
-
+          
             $response = Http::$verb($url);
 
             $this->clearPopulates();
@@ -109,12 +110,16 @@ class LaravelStrapiRequest
      *
      * @return string
      */
-    private function preparePopulates(): string
+    private function preparePopulates()
     {
+        if($this->populate[0] == '*'){
+            return 'populate=*';
+        }
 
+        $populate = new stdClass();
+        $populate->populate =  json_decode(json_encode($this->populate));
 
-
-        return implode(',', $this->populate);
+        return http_build_query($populate);
     }
 
     /**
