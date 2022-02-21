@@ -108,6 +108,37 @@ $homepageArray = $strapi->populate(['*'])->single('homepage');
 $homepageArray = $strapi->populate(['homepage.navbar.links', 'homepage.metadata'])->single('homepage');
 ```
 
+Deeply populate a dynamic zone with 2 components:
+Examples from [Strapi API Docs](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html#component-dynamic-zones)
+
+```php
+use MaximilianRadons\LaravelStrapi\LaravelStrapi;
+
+$strapi = new LaravelStrapi();
+
+$query = [
+    'populate' => [
+        'testDZ' => [
+            'populate' => '*'
+        ],
+    ]
+];
+
+$homepageArray = $strapi->query($query)->single('articels');
+
+$query = [
+    'fields' => ['title', 'slug'],
+    'populate' => [
+        'headerImage' => [
+            'fields' => ['name', 'url']
+        ],
+    ]
+];
+
+$homepageArray = $strapi->query($query)->single('articels');
+
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
