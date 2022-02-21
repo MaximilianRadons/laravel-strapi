@@ -108,8 +108,7 @@ $homepageArray = $strapi->populate(['*'])->single('homepage');
 $homepageArray = $strapi->populate(['homepage.navbar.links', 'homepage.metadata'])->single('homepage');
 ```
 
-Deeply populate a dynamic zone with 2 components:
-Examples from [Strapi API Docs](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html#component-dynamic-zones)
+Deeply populate a dynamic zone with 2 components, examples from [Strapi API Docs](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html#component-dynamic-zones):
 
 ```php
 use MaximilianRadons\LaravelStrapi\LaravelStrapi;
