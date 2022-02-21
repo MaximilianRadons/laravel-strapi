@@ -14,12 +14,14 @@ class LaravelStrapiRequest
     private string $strapiUrl;
     private int $cacheTime;
     private array $populate;
+    private $query;
 
     public function __construct()
     {
         $this->strapiUrl = config('strapi.url');
         $this->cacheTime = config('strapi.cache_time');
         $this->populate = [];
+        $this->query = null;
     }  
 
     protected function request(string $verb, string $url, string $cacheKey, bool $fullUrls)
@@ -38,10 +40,19 @@ class LaravelStrapiRequest
                     $url .= '?' . $this->preparePopulates();
                 }            
             }
-          
+
+            if(!$this->hasPopulates() && $this->hasQuery()){
+                if(str_contains($url,'?')){
+                    $url .= '&' . $this->prepareQuery();
+                }else{
+                    $url .= '?' . $this->prepareQuery();
+                } 
+            }
+
             $response = Http::withToken(config('strapi.token'))->$verb($url);
 
             $this->clearPopulates();
+            $this->clearQuery();
 
             return $response->json();
         });
@@ -114,8 +125,9 @@ class LaravelStrapiRequest
             return 'populate=*';
         }
 
-        $populate = new stdClass();
-        $populate->populate =  json_decode(json_encode($this->populate));
+        $populate = [
+            'populate' => json_decode(json_encode($this->populate))
+        ];
 
         return http_build_query($populate);
     }
@@ -136,6 +148,47 @@ class LaravelStrapiRequest
     private function clearPopulates(): void
     {
         $this->populate = [];
+    }
+
+    /**
+     * Adds populate query.
+     *
+     * @param object $query
+     * @return $this
+     */
+    public function query($query): LaravelStrapiRequest
+    {
+        $this->query = $query;
+
+        return $this;
+    }
+
+    /**
+     * Prepares the query.
+     *
+     * @return string
+     */
+    private function prepareQuery()
+    {
+        return http_build_query($this->query);
+    }
+
+    /**
+     * Check if there is a query present.
+     *
+     * @return bool
+     */
+    private function hasQuery(): bool
+    {
+        return !empty($this->query);
+    }
+
+    /*
+     * Clears the query.
+     */
+    private function clearQuery(): void
+    {
+        $this->query = null;
     }
 
     /*
