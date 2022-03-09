@@ -1,10 +1,10 @@
 <?php
 
-namespace MaximilianRadons\LaravelStrapi;
+namespace KamilMalinski\LaravelStrapi;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use MaximilianRadons\LaravelStrapi\LaravelStrapiServiceProvider;
+use KamilMalinski\LaravelStrapi\LaravelStrapiServiceProvider;
 
 class TestCase extends Orchestra
 {

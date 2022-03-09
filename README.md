@@ -11,14 +11,14 @@ Laravel-Strapi is a Laravel helper for using the Strapi V4 headless CMS.
 You can install the package via composer:
 
 ```bash
-composer require maximilianradons/laravel-strapi
+composer require kamil-malinski/laravel-strapi
 ```
 
 You can publish and run the migrations with:
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="MaximilianRadons\LaravelStrapi\LaravelStrapiServiceProvider" --tag="strapi-config"
+php artisan vendor:publish --provider="KamilMalinski\LaravelStrapi\LaravelStrapiServiceProvider" --tag="strapi-config"
 ```
 
 You need to define your STRAPI_URL (without /api path) and STRAPI_CACHE_TIME in .env: 
@@ -47,7 +47,7 @@ STRAPI_WEBHOOK_SIGNATURE=your_random_string
 laravel-strapi provides the collection() and entry() calls to return a full collection, or a specific entry from a collection. In the 
 example below we are querying the strapi collection 'blogs' and then getting the entry with id 1 from that collection.
 ```php
-use MaximilianRadons\LaravelStrapi\LaravelStrapi;
+use KamilMalinski\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 $blogs = $strapi->collection('blogs');
@@ -62,7 +62,7 @@ There are several useful options available as well.
 - ```$start``` is the offset to be used with limit, useful for pagination
 
 ```php
-use MaximilianRadons\LaravelStrapi\LaravelStrapi;
+use KamilMalinski\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 $blogs = $strapi->collection('blogs', $sortKey = 'id', $sortOrder = 'DESC', $limit = 20, $start = 0, $fullUrls = true);
@@ -73,7 +73,7 @@ $entry = $strapi->entry('blogs', 1, $fullUrls = true);
 You may also access Single Type items as follows: 
 
 ```php
-use MaximilianRadons\LaravelStrapi\LaravelStrapi;
+use KamilMalinski\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 
@@ -87,7 +87,7 @@ $homepageItem = $strapi->single('homepage', 'content');
 And you may select entries by searching for a custom field (e.g. slug): 
 
 ```php
-use MaximilianRadons\LaravelStrapi\LaravelStrapi;
+use KamilMalinski\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 
@@ -97,7 +97,7 @@ $entries = $strapi->entriesByField('blogs', 'slug', 'test-blog-post');
 Populate with deep relations:
 
 ```php
-use MaximilianRadons\LaravelStrapi\LaravelStrapi;
+use KamilMalinski\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 
@@ -111,7 +111,7 @@ $homepageArray = $strapi->populate(['homepage.navbar.links', 'homepage.metadata'
 Deeply populate a dynamic zone with 2 components, examples from [Strapi API Docs](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html#component-dynamic-zones):
 
 ```php
-use MaximilianRadons\LaravelStrapi\LaravelStrapi;
+use KamilMalinski\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 

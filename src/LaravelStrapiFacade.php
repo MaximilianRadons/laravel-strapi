@@ -1,6 +1,6 @@
 <?php
 
-namespace MaximilianRadons\LaravelStrapi;
+namespace KamilMalinski\LaravelStrapi;
 
 use Illuminate\Support\Facades\Facade;
 

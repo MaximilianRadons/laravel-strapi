@@ -1,12 +1,12 @@
 <?php
-namespace MaximilianRadons\LaravelStrapi;
+namespace KamilMalinski\LaravelStrapi;
 
 use stdClass;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
-use MaximilianRadons\LaravelStrapi\Exceptions\NotFound;
-use MaximilianRadons\LaravelStrapi\Exceptions\UnknownError;
-use MaximilianRadons\LaravelStrapi\Exceptions\PermissionDenied;
+use KamilMalinski\LaravelStrapi\Exceptions\NotFound;
+use KamilMalinski\LaravelStrapi\Exceptions\UnknownError;
+use KamilMalinski\LaravelStrapi\Exceptions\PermissionDenied;
 
 
 class LaravelStrapiRequest

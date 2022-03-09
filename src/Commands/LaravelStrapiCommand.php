@@ -1,6 +1,6 @@
 <?php
 
-namespace MaximilianRadons\LaravelStrapi\Commands;
+namespace KamilMalinski\LaravelStrapi\Commands;
 
 use Illuminate\Console\Command;
 
