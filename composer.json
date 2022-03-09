@@ -1,5 +1,5 @@
 {
-    "name": "KamilMalinski/laravel-strapi",
+    "name": "kamil-malinski/laravel-strapi",
     "description": "Laravel wrapper for using the Strapi headless CMS",
     "keywords": [
         "laravel",
