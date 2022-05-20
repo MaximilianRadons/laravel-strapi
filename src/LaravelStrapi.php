@@ -2,6 +2,8 @@
 
 namespace MaximilianRadons\LaravelStrapi;
 
+use Illuminate\Support\Facades\Http;
+
 
 class LaravelStrapi extends LaravelStrapiRequest
 {
@@ -12,7 +14,8 @@ class LaravelStrapi extends LaravelStrapiRequest
 
     public function collection(string $type, $sortKey = 'id', $sortOrder = 'DESC', $limit = 20, $start = 0, $fullUrls = true): array
     {
-        $url = $type . '?_sort=' . $sortKey . ':' . $sortOrder . '&_limit=' . $limit . '&_start=' . $start;
+        //$url = $type . '?_sort=' . $sortKey . ':' . $sortOrder . '&_limit=' . $limit . '&_start=' . $start;
+        $url = $type;
         $cacheKey = 'collection.' . $type . '.' . $sortKey . '.' . $sortOrder . '.' . $limit . '.' . $start;
 
         $collection = $this->request('get', $url, $cacheKey, $fullUrls);
@@ -30,6 +33,7 @@ class LaravelStrapi extends LaravelStrapiRequest
         return $collectionCount;
     }
 
+    // get entry by id
     public function entry(string $type, int $id, $fullUrls = true): array
     {
         $url = $type . '/' . $id;
@@ -39,6 +43,18 @@ class LaravelStrapi extends LaravelStrapiRequest
 
         return $entry;
     }
+
+    // create entry
+    public function create_entry(string $type, $data): array
+    {
+        $data = ['data' => $data];
+        $url = config('strapi.url') . '/api/'. $type;
+        //$cacheKey = 'entry.' . $type;
+        $entry = (array) Http::withToken(config('strapi.token'))->post($url, $data)->json('data');
+
+        return $entry;
+    }
+
 
     /**
      * Filtering
@@ -99,7 +115,6 @@ class LaravelStrapi extends LaravelStrapiRequest
 
         return $single;
     }
-
 
 
 }

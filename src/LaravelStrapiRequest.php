@@ -27,27 +27,29 @@ class LaravelStrapiRequest
     protected function request(string $verb, string $url, string $cacheKey, bool $fullUrls)
     {
         $url = $this->strapiUrl . '/api/'. $url;
-        $cacheKey = config('strapi.cache_prefix') . '.' . $cacheKey;
 
+        if($this->hasPopulates()) {           
+            if(str_contains($url,'?')){
+                $url .= '&' . $this->preparePopulates();
+            }else{
+                $url .= '?' . $this->preparePopulates();
+            }            
+        }
+
+        if(!$this->hasPopulates() && $this->hasQuery()){
+            if(str_contains($url,'?')){
+                $url .= '&' . $this->prepareQuery();
+            }else{
+                $url .= '?' . $this->prepareQuery();
+            } 
+        }
+
+        $cacheKey = config('strapi.cache_prefix') . '.' . $cacheKey . '.' . hash("md5", $url);
         $this->rememberCacheKeys($cacheKey);
         
         $data = Cache::remember($cacheKey, $this->cacheTime, function () use ($verb, $url) {
            
-            if($this->hasPopulates()) {           
-                if(str_contains($url,'?')){
-                    $url .= '&' . $this->preparePopulates();
-                }else{
-                    $url .= '?' . $this->preparePopulates();
-                }            
-            }
-
-            if(!$this->hasPopulates() && $this->hasQuery()){
-                if(str_contains($url,'?')){
-                    $url .= '&' . $this->prepareQuery();
-                }else{
-                    $url .= '?' . $this->prepareQuery();
-                } 
-            }
+            //echo urldecode( $url )."<br><br>";
 
             $response = Http::withToken(config('strapi.token'))->$verb($url);
 
@@ -195,7 +197,7 @@ class LaravelStrapiRequest
      * Remember all cache keys to flush strapi cache only
      * 
      */
-    public function rememberCacheKeys(string $cacheKey)
+    public function rememberCacheKeys($cacheKey)
     {
         if(Cache::has(config('strapi.cache_prefix').'.keys')){
             $cached_keys = Cache::get(config('strapi.cache_prefix').'.keys');
