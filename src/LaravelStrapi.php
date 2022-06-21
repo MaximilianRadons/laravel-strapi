@@ -3,6 +3,7 @@
 namespace MaximilianRadons\LaravelStrapi;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
 
 class LaravelStrapi extends LaravelStrapiRequest
@@ -44,13 +45,24 @@ class LaravelStrapi extends LaravelStrapiRequest
         return $entry;
     }
 
-    // create entry
+    // create/update entry
     public function create_entry(string $type, $data): array
     {
         $data = ['data' => $data];
         $url = config('strapi.url') . '/api/'. $type;
-        //$cacheKey = 'entry.' . $type;
         $entry = (array) Http::withToken(config('strapi.token'))->post($url, $data)->json('data');
+
+        return $entry;
+    }
+
+    //delete entry
+    public function delete_entry(string $type, int $id): array
+    {
+        $url = config('strapi.url') . '/api/'. $type . '/' . $id;
+        $cacheKey = 'entry.' . $type . '.' . $id;
+        $entry = (array) Http::withToken(config('strapi.token'))->delete($url)->json('data');
+        // remove from cache
+        Cache::forget($cacheKey);
 
         return $entry;
     }
