@@ -21,5 +21,8 @@ return [
     'webhook_signature' => env('STRAPI_WEBHOOK_SIGNATURE', 'better-than-nothing'),
 
     // Header Key of Signature
-    'webhook_signature_header' => 'Authorization'
+    'webhook_signature_header' => 'Authorization',
+
+    // Clear cache on webhook
+    'clear_cache_on_webhook' => env('STRAPI_CLEAR_CACHE_ON_WEBHOOK', true),
 ];

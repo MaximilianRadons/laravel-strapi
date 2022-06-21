@@ -40,7 +40,10 @@ Setup a url and a header with Key "Athorization" and a random string as Value an
 ```
 STRAPI_WEBHOOK_URL=http://localhost:8000/strapi-cache-webhook
 STRAPI_WEBHOOK_SIGNATURE=your_random_string
+STRAPI_CLEAR_CACHE_ON_WEBHOOK=true //default true
 ```
+In your App you can use the StrapiWebhook Event to implement your own Logic to flush the cash if needed.
+Add an Event Listener to your App, you also need to register the Listener in your EventServiceProvider.
 
 ## Usage
 
