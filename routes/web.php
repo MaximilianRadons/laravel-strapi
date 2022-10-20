@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use MaximilianRadons\LaravelStrapi\Events\StrapiWebhook;
@@ -9,10 +10,6 @@ Route::post(config('strapi.webhook_url'), function (Request $request) {
 
     if(request()->header(config('strapi.webhook_signature_header')) != config('strapi.webhook_signature')){
         abort(401);
-    }
-
-    if(!Cache::has(config('strapi.cache_prefix').'.keys')){
-        return response('ok', 200);
     }
 
     if(config('strapi.clear_cache_on_webhook')){
