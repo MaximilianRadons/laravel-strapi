@@ -12,7 +12,7 @@ Route::post(config('strapi.webhook_url'), function (Request $request) {
         abort(401);
     }
 
-    if(config('strapi.clear_cache_on_webhook')){
+    if(config('strapi.clear_cache_on_webhook') && Cache::has(config('strapi.cache_prefix').'.keys')){
         $cache_keys = Cache::get(config('strapi.cache_prefix').'.keys');
 
         foreach($cache_keys as $key){

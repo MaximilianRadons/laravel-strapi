@@ -45,12 +45,23 @@ class LaravelStrapi extends LaravelStrapiRequest
         return $entry;
     }
 
-    // create/update entry
+    // create entry
     public function create_entry(string $type, $data): array
     {
         $data = ['data' => $data];
         $url = config('strapi.url') . '/api/'. $type;
         $entry = (array) Http::withToken(config('strapi.token'))->post($url, $data)->json('data');
+
+        return $entry;
+    }
+
+    // update entry
+    public function update_entry(string $type, $data): array
+    {
+        $id = $data['id'];
+        $data = ['data' => $data];
+        $url = config('strapi.url') . '/api/'. $type . '/' . $id;
+        $entry = (array) Http::withToken(config('strapi.token'))->put($url, $data)->json('data');
 
         return $entry;
     }
