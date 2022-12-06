@@ -69,7 +69,7 @@ class LaravelStrapiRequest
             Cache::forget($cacheKey);
 
             if ($data === null) {
-                throw new NotFound('The requested entries were not found' . $url);
+                throw new NotFound('The requested entries were not found ' . $url);
             }
 
             throw new UnknownError('An unknown Strapi error was returned');
