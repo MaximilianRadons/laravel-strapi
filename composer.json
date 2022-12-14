@@ -1,5 +1,5 @@
 {
-    "name": "maximilianradons/laravel-strapi",
+    "name": "kamil-malinski/laravel-strapi",
     "description": "Laravel wrapper for using the Strapi headless CMS",
     "keywords": [
         "laravel",
@@ -8,7 +8,7 @@
         "strapi-cms",
         "laravel-package"
     ],
-    "homepage": "https://github.com/MaximilianRadons/laravel-strapi",
+    "homepage": "https://github.com/kamil-malinski/laravel-strapi",
     "license": "MIT",
     "authors": [
         {
@@ -25,17 +25,22 @@
             "name": "Maximilian Radons",
             "email": "radons@rad-germany.de",
             "role": "Developer"
+        },
+        {
+            "name": "Kamil Malinski",
+            "email": "kamil@malinski.at",
+            "role": "Developer"
         }
     ],
     "require": {
         "php": "^7.3|^7.4|^8.0|^8.1",
         "laravel/framework": "^8|^9",
         "spatie/laravel-package-tools": "^1.4.3",
-        "illuminate/contracts": "^8.37"
+        "illuminate/contracts": "^8.37|^9.0"
     },
     "require-dev": {
         "brianium/paratest": "^6.2",
-        "nunomaduro/collision": "^5.3",
+        "nunomaduro/collision": "^5.3|^6.0",
         "orchestra/testbench": "^6.15",
         "phpunit/phpunit": "^9.3",
         "spatie/laravel-ray": "^1.9",
@@ -43,13 +48,13 @@
     },
     "autoload": {
         "psr-4": {
-            "MaximilianRadons\\LaravelStrapi\\": "src",
-            "MaximilianRadons\\LaravelStrapi\\Database\\Factories\\": "database/factories"
+            "KamilMalinski\\LaravelStrapi\\": "src",
+            "KamilMalinski\\LaravelStrapi\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MaximilianRadons\\LaravelStrapi\\Tests\\": "tests"
+            "KamilMalinski\\LaravelStrapi\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -63,10 +68,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "MaximilianRadons\\LaravelStrapi\\LaravelStrapiServiceProvider"
+                "KamilMalinski\\LaravelStrapi\\LaravelStrapiServiceProvider"
             ],
             "aliases": {
-                "LaravelStrapi": "MaximilianRadons\\LaravelStrapi\\LaravelStrapiFacade"
+                "LaravelStrapi": "KamilMalinski\\LaravelStrapi\\LaravelStrapiFacade"
             }
         }
     },

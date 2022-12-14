@@ -1,10 +1,10 @@
 <?php
 
-namespace MaximilianRadons\LaravelStrapi;
+namespace KamilMalinski\LaravelStrapi;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use MaximilianRadons\LaravelStrapi\Commands\LaravelStrapiCommand;
+use KamilMalinski\LaravelStrapi\Commands\LaravelStrapiCommand;
 
 
 
